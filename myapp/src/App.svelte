@@ -1,10 +1,12 @@
 <script>
-  import Attendance from './lib/Attendance.svelte'
+  import Header from './lib/Header.svelte'
+  import Student from './lib/Student.svelte'
 </script>
 
 <main>
   <div class="card">
-    <Attendance />
+    <Header />
+    <Student />
   </div>
 </main>
 
