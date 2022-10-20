@@ -1,5 +1,6 @@
 <script>
   import {onMount} from 'svelte';
+  
 
 let studentsList = [];
 
@@ -27,7 +28,6 @@ onMount(async () => {
         </tr>
       </thead>
       <tbody id="role-table-body">
-        <!-- Comes from selected person's data -->
           {#each studentsList as student}
             <tr>
               <td><img src={student.picture.thumbnail} alt={student.name.first} style="width:50%;"></td> 
@@ -55,7 +55,6 @@ onMount(async () => {
  table {
   table-layout: fixed;
   width: 100%;
-  border-collapse: collapse;
 }
 tr,td {
   padding-left: 4.5%;
@@ -65,7 +64,6 @@ tr,td {
 thead{
   border-radius: 15px;
   border:15%;
-  background-color: beige;
   outline-color:black;
   outline-style: groove;
 }

@@ -20,11 +20,12 @@
     border-radius: 15px;
     height: 8rem;
     width: 90%;
-    background-color: beige;
     margin: auto;
     display: flex;
     flex-direction: column;
     text-align: center;
+    outline-color:black;
+    outline-style: groove;
   }
   
 
