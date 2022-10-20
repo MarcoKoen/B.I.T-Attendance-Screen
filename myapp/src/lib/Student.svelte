@@ -1,8 +1,8 @@
 <script>
   import {onMount} from 'svelte';
-let nameObject = {name: '', lastName: '', photo:''}
 
 let studentsList = [];
+
 
 onMount(async () => {
   const res = await fetch('https://randomuser.me/api/?results=20')
@@ -11,63 +11,69 @@ onMount(async () => {
   console.log(studentsList)
 })
 
-
-
-
 </script>
 
-<div class = "main-tab">
-  <p>Paper Selected: Introductionary App Development</p>
-  <ul class = "fields">
-    <li>Photo</li>
-    <li>Surname</li>
-    <li>First Name</li>
-    <li>ID Number</li>
-    <li>Attendance</li>
-    <li>Today's Attendance</li>
-  </ul>
-
-  <form id="student-form" action ="#">
-    <fieldset>
-      <tbody id="student-table-body" class ="studentData">
-        {#each studentsList as student}
-       <li><img src={student.picture.thumbnail} alt={student.name.first} style="width:auto;"></li> 
-       <li>{student.name.last}</li> 
-       <li>{student.name.first}</li>
-        {/each}
+<form id="roles-form" action="#">
+  <fieldset>
+    <table>
+      <thead>
+        <tr>
+          <th>Photo</th>
+          <th>Surname</th>
+          <th>First Name</th>
+          <th>ID Number</th>
+          <th>Attendance</th>
+          <th>Today's Attendance</th>
+        </tr>
+      </thead>
+      <tbody id="role-table-body">
+        <!-- Comes from selected person's data -->
+          {#each studentsList as student}
+            <tr>
+              <td><img src={student.picture.thumbnail} alt={student.name.first} style="width:50%;"></td> 
+              <td>{student.name.last}</td> 
+              <td>{student.name.first}</td>
+              <td>{student.cell}</td>
+            </tr>
+          {/each}
       </tbody>
+    </table>
     </fieldset>
-  </form>
-</div>
+</form>
+
 
 
 
 
 
 <style>
-.main-tab{
-    border-radius: 15px;
-    width: 90%;
-    background-color: beige;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-  }
+ #roles-form{
+   width: 80%;
+   justify-content: center;
+   margin: auto;
+ }
+ table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+tr,td {
+  padding-left: 4.5%;
+  height: 20%;
+}
 
-   .main-tab, .p {
-    font-weight: 300;
-  }
+thead{
+  border-radius: 15px;
+  border:15%;
+  background-color: beige;
+  outline-color:black;
+  outline-style: groove;
+}
 
-  .fields{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style-type: none;
-  }
 
-  .studentData{
-    display: flex;
-    flex-direction: row;
-  }
+
+
+
+
 
 </style>

@@ -11,5 +11,8 @@
 </main>
 
 <style>
+.card{
+  background-color: pink;
+}
 
 </style>
