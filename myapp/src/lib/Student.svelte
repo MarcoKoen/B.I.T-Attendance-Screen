@@ -15,9 +15,7 @@ onMount(async () => {
 </script>
 
 <form id="roles-form" action="#">
-  <fieldset>
     <table>
-      <thead>
         <tr>
           <th>Photo</th>
           <th>Surname</th>
@@ -26,7 +24,6 @@ onMount(async () => {
           <th>Attendance</th>
           <th>Today's Attendance</th>
         </tr>
-      </thead>
       <tbody id="role-table-body">
           {#each studentsList as student}
             <tr>
@@ -34,44 +31,53 @@ onMount(async () => {
               <td>{student.name.last}</td> 
               <td>{student.name.first}</td>
               <td>{student.cell}</td>
+              <td class= "attendance-value">
+                <div class="square green">P</div>
+                <div class="square red">A</div>
+                <div class="square green">P</div>
+                <div class="square green">O</div>
+                <div class="square red">A</div>
+              </td>
             </tr>
           {/each}
       </tbody>
     </table>
-    </fieldset>
+
 </form>
-
-
-
-
 
 
 <style>
  #roles-form{
    width: 80%;
-   justify-content: center;
-   margin: auto;
  }
  table {
   table-layout: fixed;
   width: 100%;
 }
-tr,td {
-  padding-left: 4.5%;
-  height: 20%;
+
+.attendance-value{
+  display: flex;
+  padding-top: 25px;
+  gap:1%;
+
 }
 
-thead{
-  border-radius: 15px;
-  border:15%;
-  outline-color:black;
-  outline-style: groove;
+.square{
+  height:2rem;
+  width:2rem;
+  font-weight: bold;
+  border-style: solid;
+  border-color: black;
+  color:white;
+
 }
 
+.green{
+  background-color: green;
+}
 
-
-
-
-
+.red{
+  background-color: red;
+}
 
 </style>
