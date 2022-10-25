@@ -32,11 +32,14 @@ onMount(async () => {
               <td>{student.name.first}</td>
               <td>{student.cell}</td>
               <td class= "attendance-value">
-                <div class="square green">P</div>
-                <div class="square red">A</div>
-                <div class="square green">P</div>
-                <div class="square green">O</div>
-                <div class="square red">A</div>
+                <div class="square green" title= "Monday 16th of October">P</div>
+                <div class="square red" title= "Wednesday 19th of October">A</div>
+                <div class="square green" title= "Monday 25th of October">P</div>
+                <div class="square green" title= "Wednesday 30th of October">O</div>
+                <div class="square red" title= "Monday 5th of November">A</div>
+              </td>
+              <td>
+                
               </td>
             </tr>
           {/each}
