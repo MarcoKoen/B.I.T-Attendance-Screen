@@ -1,9 +1,9 @@
 <script>
   import {onMount} from 'svelte';
+  import { debug } from 'svelte/internal';
   
 
 let studentsList = [];
-
 
 onMount(async () => {
   const res = await fetch('https://randomuser.me/api/?results=20')
@@ -15,12 +15,12 @@ onMount(async () => {
 </script>
 
 <form id="roles-form" action="#">
-    <table>
+  <p>Present: Absent: Other: Online: </p>
+  <table>
         <tr>
           <th>Photo</th>
           <th>Surname</th>
           <th>First Name</th>
-          <th>ID Number</th>
           <th>Attendance</th>
           <th>Today's Attendance</th>
         </tr>
@@ -30,16 +30,26 @@ onMount(async () => {
               <td><img src={student.picture.thumbnail} alt={student.name.first} style="width:50%;"></td> 
               <td>{student.name.last}</td> 
               <td>{student.name.first}</td>
-              <td>{student.cell}</td>
               <td class= "attendance-value">
-                <div class="square green" title= "Monday 16th of October">P</div>
+                <div class="square green" title= "Monday 15th of October">P</div>
                 <div class="square red" title= "Wednesday 19th of October">A</div>
                 <div class="square green" title= "Monday 25th of October">P</div>
                 <div class="square green" title= "Wednesday 30th of October">O</div>
                 <div class="square red" title= "Monday 5th of November">A</div>
               </td>
               <td>
-                
+                <div class="custom-select">
+                  <select>
+                    <option value="0">Select Status:</option>
+                    <option value="1">Present</option>
+                    <option value="2">Online Present</option>
+                    <option value="3">Absent</option>
+                    <option value="4">Sick</option>
+                    <option value="5">Late</option>
+                  </select>
+                  <span>&#10003;</span>
+                  <span>&#10540;</span>
+                </div>
               </td>
             </tr>
           {/each}
@@ -52,6 +62,7 @@ onMount(async () => {
 <style>
  #roles-form{
    width: 80%;
+   font-size:x-large;
  }
  table {
   table-layout: fixed;
@@ -82,5 +93,7 @@ onMount(async () => {
 .red{
   background-color: red;
 }
+
+
 
 </style>
