@@ -4,17 +4,15 @@
   
 
 let studentsList = [];
+let presentCount, absentCount, otherCount, onlineCount;
 
 let attendanceOptions = [
-  {id:0, text:'Select Status:'},
-  {id:1, text:'Present'},
-  {id:2, text:'Online Present'},
-  {id:3, text:'Absent'},
-  {id:4, text:'Sick'},
-  {id:5, text:'Late'},
-];
-
-let selected;
+    { text:'Select Attendance'},
+		{ value: 'present', text: 'Present' },
+		{ value: 'absent', text: 'Absent' },
+		{ value: 'online', text: 'Online' },
+		{ value: 'other', text: 'Other' },
+	];
 
 onMount(async () => {
   const res = await fetch('https://randomuser.me/api/?results=20')
@@ -23,12 +21,24 @@ onMount(async () => {
   console.log(studentsList)
 })
 
+let attendances = {};
+	$: attendancesValues = Object.values(attendances);
+	$: presentCount = attendancesValues.filter(s => s == 'present').length;
+	$: absentCount = attendancesValues.filter(s => s == 'absent').length;
+	$: onlineCount = attendancesValues.filter(s => s == 'online').length;
+	$: otherCount = attendancesValues.filter(s => s == 'other').length;
+
 
 
 </script>
 
 <form id="roles-form" action="#">
-  <p>Present: Absent: Other: Online: </p>
+  <div class="student-count">
+  <p>Present:{presentCount}</p>
+  <p>Absent:{absentCount}</p>
+  <p>Other:{otherCount}</p>
+  <p>Online:{onlineCount}</p>
+</div>
   <table>
         <tr>
           <th>Photo</th>
@@ -52,15 +62,15 @@ onMount(async () => {
               </td>
               <td>
                 <div class="custom-select">
-                  <select>
+                  <select bind:value={attendances[student.name.first]}>
                     {#each attendanceOptions as answers}
-                      <option value={answers}>
+                      <option value={answers.value}>
                         {answers.text}
                       </option>
                     {/each}
                   </select>        
-                  <span>&#10003;</span>
-                  <span>&#10540;</span>
+                  <button>&#10003;</button>
+                  <button>&#10540;</button>
                 </div>
               </td>
             </tr>
@@ -109,6 +119,13 @@ onMount(async () => {
   background-color: red;
 }
 
+.student-count{
+  display: flex;
+}
+
+.student-count , p{
+  padding-left: 2rem;
+}
 
 
 </style>
