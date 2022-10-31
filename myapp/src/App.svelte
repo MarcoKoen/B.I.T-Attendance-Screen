@@ -12,7 +12,7 @@
 
 <style>
 .card{
-  
+  cursor: pointer;
 }
 
 </style>

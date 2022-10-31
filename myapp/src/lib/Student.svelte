@@ -73,7 +73,10 @@ onMount(async () => {
   display: flex;
   padding-top: 25px;
   gap:1%;
+}
 
+.square:hover{
+  filter:brightness(70%);
 }
 
 .square{
