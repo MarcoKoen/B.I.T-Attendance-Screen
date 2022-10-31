@@ -1,9 +1,20 @@
 <script>
   import {onMount} from 'svelte';
-  import { debug } from 'svelte/internal';
+  import { debug, text } from 'svelte/internal';
   
 
 let studentsList = [];
+
+let attendanceOptions = [
+  {id:0, text:'Select Status:'},
+  {id:1, text:'Present'},
+  {id:2, text:'Online Present'},
+  {id:3, text:'Absent'},
+  {id:4, text:'Sick'},
+  {id:5, text:'Late'},
+];
+
+let selected;
 
 onMount(async () => {
   const res = await fetch('https://randomuser.me/api/?results=20')
@@ -11,6 +22,8 @@ onMount(async () => {
   studentsList = resResponse.results;
   console.log(studentsList)
 })
+
+
 
 </script>
 
@@ -40,13 +53,12 @@ onMount(async () => {
               <td>
                 <div class="custom-select">
                   <select>
-                    <option value="0">Select Status:</option>
-                    <option value="1">Present</option>
-                    <option value="2">Online Present</option>
-                    <option value="3">Absent</option>
-                    <option value="4">Sick</option>
-                    <option value="5">Late</option>
-                  </select>
+                    {#each attendanceOptions as answers}
+                      <option value={answers}>
+                        {answers.text}
+                      </option>
+                    {/each}
+                  </select>        
                   <span>&#10003;</span>
                   <span>&#10540;</span>
                 </div>
